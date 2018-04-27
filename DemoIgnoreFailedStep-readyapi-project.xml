@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="09e5c87a-7cb7-414f-8a9e-0283cb52849a" created="2.3.0-m-SNAPSHOT" activeEnvironment="Default environment" name="DemoIgnoreFailedStep" resourceRoot="" updated="2.3.0-m-SNAPSHOT 2018-03-28T12:27:05Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:testSuite id="661b9b04-6bd4-43cc-a0d0-4e35cbf38143" name="TestSuite 1">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="510e8c5a-d8af-4cee-8f78-ba6c82f40009" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 1" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="httprequest" name="SuccessfulStep" id="479344a6-ecd9-458d-941d-ef355f80fce7">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="6e6e946f-568b-4bfe-a335-c6a468bdc19e" name="SuccessfulStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="015866d8-15e0-44ea-9ced-aaeaa2f9acbe" name="The server responds with a 200 status code">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="RunStepAndIgnoreFail" id="14706eb9-4e47-4461-9d8b-f0bd58f86c8d">
+        <con:settings/>
+        <con:config>
+          <script>// Get the test step for which you want to ignore the result
+def testStep = testRunner.testCase.testSuite.testCases[ "TestCase 1" ].testSteps[ "IgnoredStep" ]
+// Run the test step
+testStep.run( testRunner, context )</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="IgnoredStep" id="373c8140-6afa-4e05-b032-67f2231083f7" disabled="true">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="ee83b5e7-4427-4559-ba31-5a7c8b22dc17" name="IgnoredStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="95dd21ea-00e0-4db2-a47c-807d59f76188" name="The server responds with a 404 server code">
+            <con:settings/>
+            <con:configuration>
+              <codes>500</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>14706eb9-4e47-4461-9d8b-f0bd58f86c8d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:reportTemplates/>
+    <con:xmlTemplates/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </con:reporting>
+  <con:reporting/>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
