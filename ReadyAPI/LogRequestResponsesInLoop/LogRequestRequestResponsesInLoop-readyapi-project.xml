@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="310a91ed-4cf4-4b59-8c63-a6390fe4d84b" created="2.3.0-m-SNAPSHOT" activeEnvironment="Default environment" name="LogRequestRequestResponsesInLoop" resourceRoot="" updated="2.3.0-m-SNAPSHOT 2018-03-28T12:27:05Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:testSuite id="93b84b77-0cf8-4beb-8258-7641016d51ad" name="TestSuite">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="2a79c72f-8a58-4785-9740-baca8173e81d" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="datasource" name="DataSource" id="e913120d-457d-4084-8f56-ac43c827ca86">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Grid">
+            <con:configuration>
+              <check><![CDATA[<xml-fragment><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry><con:entry xmlns:con="http://eviware.com/soapui/config">true</con:entry></xml-fragment>]]></check>
+              <row>&lt;xml-fragment>&lt;con:entry xmlns:con="http://eviware.com/soapui/config">1&lt;/con:entry>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></row>
+              <row>&lt;xml-fragment>&lt;con:entry xmlns:con="http://eviware.com/soapui/config">2&lt;/con:entry>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></row>
+              <row>&lt;xml-fragment>&lt;con:entry xmlns:con="http://eviware.com/soapui/config">3&lt;/con:entry>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></row>
+              <row>&lt;xml-fragment>&lt;con:entry xmlns:con="http://eviware.com/soapui/config">4&lt;/con:entry>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></row>
+              <row>&lt;xml-fragment>&lt;con:entry xmlns:con="http://eviware.com/soapui/config">5&lt;/con:entry>&lt;con:entry xmlns:con="http://eviware.com/soapui/config"/>&lt;/xml-fragment></row>
+              <recognizeAsPlainText>true</recognizeAsPlainText>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>countId</con:property>
+          <con:completeLastOperation>true</con:completeLastOperation>
+          <con:restartOnRun>true</con:restartOnRun>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetGoogle" id="e323b07f-4e77-4b28-9c45-34704783dc01">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="64f09b5b-a2fc-4874-a60c-9d7009c8eaac" name="GetGoogle" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com/${DataSource#countId}</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="LogRequestAndResponse" id="9442ef53-37af-4f44-9472-688f44f245f0">
+        <con:settings/>
+        <con:config>
+          <script>// Log some separator lines
+log.info "*****************************\n*****************************"
+log.info "*****************************\n*****************************"
+log.info "*****************************\n*****************************"
+
+// Log the current iteration count 
+log.info "The current iteration count is: " + context.expand( '${DataSource#countId}' )
+
+// Log the raw request and response
+def desiredRequest = testRunner.testCase.getTestStepByName("GetGoogle")
+log.info "The raw request is:"
+log.info ( new String( desiredRequest.testRequest.messageExchange.rawRequestData ) )
+log.info "The raw response is:"
+log.info ( new String( desiredRequest.testRequest.messageExchange.rawResponseData ) )</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="EndDataSourceLoop" id="7d24385d-2d75-4b87-9ef3-219d912817c5">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource</dataSourceStep>
+          <targetStep>GetGoogle</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>e323b07f-4e77-4b28-9c45-34704783dc01</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>9442ef53-37af-4f44-9472-688f44f245f0</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:reportTemplates/>
+    <con:xmlTemplates/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </con:reporting>
+  <con:reporting/>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
