@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="15a531fc-f37b-4165-afc6-506d465ed13f" activeEnvironment="Default" name="FormatDate" resourceRoot="" soapui-version="5.4.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:testSuite id="61dbfc61-c054-48cf-81ff-49d883bd4e07" name="TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="4dbe5017-d7e8-44b6-b2bf-cb2162252022" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase" searchProperties="true"><con:settings/><con:testStep type="groovy" name="FormatDate" id="a121f14c-17d6-4d3f-a8aa-206051b32cfd"><con:settings/><con:config><script>import java.text.SimpleDateFormat
+
+// Get timestamp
+def timestamp = 1526199928404
+// Set a date using the timestamp
+def date = new Date( timestamp )
+
+// Create a date format as desired
+SimpleDateFormat dateFormat = new SimpleDateFormat( "yyyy-MM-dd hh:mm" )
+// Display your date in the defined format
+log.info dateFormat.format( date )</script></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/><con:sensitiveInformation/></con:soapui-project>
