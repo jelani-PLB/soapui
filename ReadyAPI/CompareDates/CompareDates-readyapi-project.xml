@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="a518f3d6-d920-4bd3-9a7a-63b769d5dc16" created="2.3.0-m-SNAPSHOT" activeEnvironment="Default environment" name="CompareDates" resourceRoot="" updated="2.3.0-m-SNAPSHOT 2018-03-28T12:27:05Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:testSuite id="cc935b1f-ef0a-4342-bd60-28e10516ba65" name="TestSuite">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="f6d041d9-c945-496f-9f3a-8471b4a5ba75" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="properties" name="Properties" id="d8b4f5ef-7971-4690-89d8-8d71db329869">
+        <con:settings/>
+        <con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:properties>
+            <con:property>
+              <con:name>arrivalTime</con:name>
+              <con:value>2018-05-18T11:30:00</con:value>
+            </con:property>
+            <con:property>
+              <con:name>departureTime</con:name>
+              <con:value>2018-05-18T13:49:00</con:value>
+            </con:property>
+          </con:properties>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Get Travel offers" id="4fe50f6c-aa04-4886-a5d9-8aebae99eae3">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="62d8b2ad-72ac-4a58-8c45-dbb37c1326d1" name="Get Travel offers" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:8080/getJson</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="transfer" name="ExtractArrivalAndDepartureTimes" id="4cef4504-34b0-4f1e-aac3-448a3ee7522d">
+        <con:settings/>
+        <con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>ArrivalTime</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Get Travel offers</con:sourceStep>
+            <con:sourcePath>$.data.itinerary.segments[?(@.arrivalStation.name == 'Maastricht')].arrivalDateTime[0]</con:sourcePath>
+            <con:targetType>arrivalTime</con:targetType>
+            <con:targetStep>Properties</con:targetStep>
+            <con:targetPath/>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+          <con:transfers setNullOnMissingSource="true" transferTextContent="true" failOnError="true" ignoreEmpty="false" transferToAll="false" entitize="false" transferChildNodes="false">
+            <con:name>DepartureTime</con:name>
+            <con:sourceType>Response</con:sourceType>
+            <con:sourceStep>Get Travel offers</con:sourceStep>
+            <con:sourcePath>$.data.itinerary.segments[?(@.departureStation.name == 'Maastricht')].departureDateTime[0]</con:sourcePath>
+            <con:targetType>departureTime</con:targetType>
+            <con:targetStep>Properties</con:targetStep>
+            <con:type>JSONPATH</con:type>
+            <con:upgraded>true</con:upgraded>
+          </con:transfers>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="CompareTimes" id="910f9bb1-bbbc-467b-8bf8-98dd8df6b4c0">
+        <con:settings/>
+        <con:config>
+          <script>import java.text.SimpleDateFormat 
+import java.text.DateFormat
+
+// Get properties
+def arrivalTime = context.expand( '${Properties#arrivalTime}' )
+def departureTime = context.expand( '${Properties#departureTime}' )
+
+// Define the date format
+DateFormat format = new SimpleDateFormat( "yyyy-MM-dd'T'HH:mm:ss" )
+
+// Parse the dates and transform them in a timestamp
+Date arrivalTimeDate = format.parse( arrivalTime )
+Long arrivalTimestamp = arrivalTimeDate.getTime()
+Date departureTimeDate = format.parse( departureTime )
+Long departureTimestamp = departureTimeDate.getTime()
+
+// Assert that the difference is larger than 120 minutes (Take note that the timestamp is defined in milliseconds)
+assert ( (departureTimestamp - arrivalTimestamp) > 7200000 )</script>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>d8b4f5ef-7971-4690-89d8-8d71db329869</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:xmlTemplates/>
+    <con:parameters/>
+  </con:reporting>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
