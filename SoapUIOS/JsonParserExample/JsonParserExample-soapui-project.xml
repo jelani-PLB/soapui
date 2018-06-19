@@ -35,8 +35,7 @@ def jsonSlurper = new JsonSlurper()
 def jsonObject = jsonSlurper.parseText( response )
 
 // Get an element from the json object
-//log.info jsonObject
-log.info jsonObject.fruits[2].apples</script>
+log.info jsonObject</script>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -114,7 +113,8 @@ if( requestBody.contains("some data") )
 			{
 				"oranges" : 
 					[
-						{ "clementines" : "red-clementines" }, 
+						{ "clementines" : "red-clementines" },
+						{ "clementines" : "orange-clementines" }, 
 						{ "mandarines" : "small-mandarines" }
 					]
 			}
