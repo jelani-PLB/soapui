@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="368d5fd0-95b5-4274-9786-6a75f253ca34" created="2.4.0" activeEnvironment="Default environment" name="Project 1" resourceRoot="" updated="2.4.0 2018-06-04T12:31:42Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:testSuite id="1fd5f45a-761e-4bca-a37f-5343bc0a6a39" name="TestSuite 1">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="c1e7c8d3-1523-4140-b0f2-14fba2db3bf2" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 1" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="httprequest" name="OpenPage" id="c125c071-78fd-4ece-9935-c9503de47abb">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="7721ff09-73c6-43cd-bec0-f4fc463ea611" name="OpenPage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings/>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="8264af79-003c-4497-8752-b06842ad7ff5" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Login" id="40008f0c-e358-4972-a68e-dd84df79aabb">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="6e76f467-b8e9-4bb4-ada5-7ee5e6a577f9" name="Login" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings/>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="57b5954c-ba6a-4cff-849a-8a43c5a0f0e4" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="RegisterOrder" id="ce3d3930-f7e8-4796-8ccc-623f2bf09a98">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="40aed7d2-e2e6-4d37-88e3-8040bc77cda1" name="RegisterOrder" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings/>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="0427fcf4-cae9-4694-804f-052701472bda" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="Logout" id="239f0c65-e712-4728-86f1-63128d770a1e">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="602c3515-e6e3-48ce-8950-d9f8472d0b6c" name="Logout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings/>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="55df4dab-cc7a-4c84-aff8-9e2cfd2572f2" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:testCase id="d71b286b-7670-43b3-aef3-b3c92d1d957b" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 2" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="httprequest" name="OpenInventory" id="91db52b7-8f78-4eac-bfc3-b3cd16148719">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="4198d428-ad7d-4d78-a619-f03cbdd40e59" name="OpenInventory" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="6645e0fa-800e-459c-98ca-6a2192537e4b" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="SearchProduct" id="ac27f8a7-c53d-4b2c-840e-17c57bd9823d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="30af1854-f3b1-43a8-8266-601584f3a106" name="SearchProduct" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="25e6e829-fef0-4410-b97c-c9b1f97402eb" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="DeleteProduct" id="e3e28665-e94e-4786-9a93-6b2cdd852ab2">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="6cf4e397-3b8a-40ed-b854-09ebad23633b" name="DeleteProduct" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="f83c7bdb-b837-4a78-b34f-a928e4eef740" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="RefreshList" id="dc969ccd-9f1f-4eec-9a1a-51c402ce9177">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="0813321b-ff0c-4ba1-897e-306585a98106" name="RefreshList" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="22579fe0-95eb-4c55-9a4d-4ae8aa87b34e" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>500</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:properties/>
+    <con:tearDownScript/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:testSuite id="3a5933c4-7008-41df-b80d-003f3849cb99" name="TestSuite 2">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="ccbe2418-7618-4548-b5f4-43f01eee8697" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="TestCase 3" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="httprequest" name="OpenComplaintsPage" id="839c8141-2257-4ac1-9d5e-1957c0a3decc">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="4c5a4084-d31d-4a27-bdc5-a8eef4607be3" name="OpenComplaintsPage" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="b9c22de1-9273-426e-8985-767019be60e5" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="FilterComplaints" id="79db922a-e550-45ca-a997-4ae00f8e37d6">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="f6cd18d8-a00d-4b11-a57d-84761354fe85" name="FilterComplaints" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="f1c6f2db-c4ac-4b32-9f6b-e6c0406c0274" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="OpenSpecificComplaint" id="65f50ca1-0a97-4ee1-9397-48d62d752b54">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="5b93997a-a403-4e78-9df5-992caecc0c0c" name="OpenSpecificComplaint" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="34a21918-5993-4a9c-a864-7e5c10399758" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>300</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="AnswerToComplaint" id="68897687-9afd-4227-855a-147fc55b69b3">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="5634ddcd-f2c0-44e0-8b7a-c6b22fb81639" name="AnswerToComplaint" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://google.com</con:endpoint>
+          <con:request/>
+          <con:assertion type="Valid HTTP Status Codes" id="ace88f0e-7616-426e-8f88-6501555bc6d3" name="Valid HTTP Status Codes">
+            <con:settings/>
+            <con:configuration>
+              <codes>200</codes>
+            </con:configuration>
+          </con:assertion>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:reportTemplates/>
+    <con:xmlTemplates/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </con:reporting>
+  <con:reporting/>
+  <con:afterRunScript><![CDATA[// Define variables for holding test suites, test cases and test steps
+def testSuites
+def testCases
+def testSteps
+
+// Get all the test suites from the project
+testSuites = project.testSuiteList
+
+File file = new File("C:\\Users\\luciana\\Desktop\\test.txt")
+
+/**
+ * Iterate through each test suite, test case and test step
+ */
+testSuites.each() {
+	// Log test suite name
+	file << "-----------------------------------\n"
+	file << "Running test suite: " + it.getName() + "\n"
+	file << "-----------------------------------\n"
+	// Get a list with the contained test cases
+	testCases = it.getTestCaseList()
+	testCases.each() {
+		// Log test case name
+		file << "-----------------------------------\n"
+		file << "Running test case: " + it.getName() + "\n"
+		file << "-----------------------------------\n"
+		// Get a list with the contained test steps
+		testSteps = it.getTestStepList()
+		testSteps.each() {
+			file << it.getName() + " - " + it.getAssertionStatus() + "\n"
+		}
+	}
+}]]></con:afterRunScript>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// def token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// def token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// def headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
