@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="dcc10fc2-1054-4d59-8cb6-983071fec606" created="2.4.0" activeEnvironment="Default environment" name="CompareDatasourceWithResponse" resourceRoot="" updated="2.4.0 2018-06-04T12:31:42Z" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings/>
+  <con:testSuite id="777539aa-dd48-4058-ac74-fdd401c01120" name="MyTestSuite">
+    <con:settings/>
+    <con:savedRecentRuns>1</con:savedRecentRuns>
+    <con:runType>SEQUENTIAL</con:runType>
+    <con:testCase id="4b5a8a2a-b253-4594-bc28-4a6e68d27258" discardOkResults="true" failOnError="true" failTestCaseOnErrors="true" keepSession="false" name="MyTestCase" searchProperties="true" timeout="0">
+      <con:settings/>
+      <con:savedRecentRuns>1</con:savedRecentRuns>
+      <con:testStep type="datasource" name="DataSource" id="b8bc73c6-50c4-47b3-9de2-a296f96cd83a">
+        <con:settings/>
+        <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:dataSource type="Excel">
+            <con:configuration>
+              <file>C:/Users/luciana/Downloads/Trial.xlsx</file>
+              <worksheet>TestGrid</worksheet>
+              <cell>A2</cell>
+              <ignoreEmpty>false</ignoreEmpty>
+              <evaluateFormulas>false</evaluateFormulas>
+            </con:configuration>
+          </con:dataSource>
+          <con:shared>true</con:shared>
+          <con:restartShared>true</con:restartShared>
+          <con:property>ID</con:property>
+          <con:property>TestID</con:property>
+          <con:property>TestName</con:property>
+          <con:property>Assay</con:property>
+          <con:property>Analyses</con:property>
+          <con:property>Cassettes</con:property>
+          <con:property>Enabled</con:property>
+          <con:property>UserDefined</con:property>
+          <con:completeLastOperation>true</con:completeLastOperation>
+          <con:restartOnRun>true</con:restartOnRun>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="httprequest" name="GetResponse" id="645663d1-f17a-40dd-b5d3-25c3b40fa34d">
+        <con:settings/>
+        <con:config method="GET" xsi:type="con:HttpRequest" id="bf12e050-5121-4700-ac5e-6129cd92e305" name="GetResponse" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+          <con:settings>
+            <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+          </con:settings>
+          <con:endpoint>http://localhost:8080/get-it</con:endpoint>
+          <con:request/>
+          <con:credentials>
+            <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+            <con:authType>No Authorization</con:authType>
+          </con:credentials>
+          <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+          <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="CompareData" id="f59a41ac-3dca-4f85-ac39-3063c854feb7">
+        <con:settings/>
+        <con:config>
+          <script>import groovy.json.JsonSlurper
+
+// Get the id from the datasource
+def id = context.expand('${DataSource#ID}') as Integer
+
+// Get the response from the GetResponse step
+def response = context.expand('${GetResponse#Response}')
+
+// Parse the response with JsonSlurper
+def jsonSlurper = new JsonSlurper()
+def jsonObject = jsonSlurper.parseText( response )
+
+// Get the element where the ID is the same as in the datasource
+for (int i = 0; i &lt; jsonObject.value.size(); i++) {
+	if (jsonObject.value[i].Id == id) {
+		// Start comparison
+		assert jsonObject.value[i].TestID.equals( context.expand('${DataSource#TestId}'))
+		assert jsonObject.value[i].TestName.equals( context.expand('${DataSource#TestName}'))
+		assert jsonObject.value[i].Assays.equals( context.expand('${DataSource#Assay}'))
+		assert jsonObject.value[i].Analyses.equals( context.expand('${DataSource#Analyses}'))
+		assert jsonObject.value[i].Cassettes.equals( context.expand('${DataSource#Cassettes}'))
+		assert jsonObject.value[i].Enabled == context.expand('${DataSource#Enabled}').toBoolean()
+		assert jsonObject.value[i].UserDefined == context.expand('${DataSource#UserDefined}').toBoolean()
+	}
+}</script>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="datasourceloop" name="DataSourceEndLoop" id="5d83824f-a103-4816-ba3c-67e05d467420">
+        <con:settings/>
+        <con:config>
+          <dataSourceStep>DataSource</dataSourceStep>
+          <targetStep>CompareData</targetStep>
+          <discardResults>true</discardResults>
+        </con:config>
+      </con:testStep>
+      <con:properties/>
+      <con:reportParameters/>
+      <con:breakPoints>
+        <con:testStepId>645663d1-f17a-40dd-b5d3-25c3b40fa34d</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>f59a41ac-3dca-4f85-ac39-3063c854feb7</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+    </con:testCase>
+    <con:properties/>
+    <con:reportParameters/>
+  </con:testSuite>
+  <con:savedRecentRuns>1</con:savedRecentRuns>
+  <con:requirements/>
+  <con:properties/>
+  <con:wssContainer/>
+  <con:databaseConnectionContainer/>
+  <con:jmsConnectionContainer/>
+  <con:oAuth2ProfileContainer/>
+  <con:oAuth1ProfileContainer/>
+  <con:reporting>
+    <con:reportTemplates/>
+    <con:xmlTemplates/>
+    <con:xmlTemplates/>
+    <con:parameters/>
+    <con:parameters/>
+  </con:reporting>
+  <con:reporting/>
+  <con:eventHandlers type="RequestFilter.filterRequest" name="RequestFilter.filterRequest">
+    <con:script>// Sample event script to add custom HTTP header to all outgoing REST, SOAP and HTTP(S) calls
+// This code is often used for adding custom authentication to SoapUI Pro tests
+
+// If hardcoding the token, uncomment and change line 5
+// def token = '4567'
+
+// If your token is parameterized in Project level custom property, uncomment line 8
+// def token = request.parent.testCase.testSuite.project.getProperty('auth_token').getValue()
+
+// To modify all outgoing calls, remove comments from lines 11 to 16
+// def headers = request.requestHeaders
+// if (headers.containsKey('auth_token2') == false) {
+//   headers.put('auth_token2', token)
+//   request.requestHeaders = headers
+// }</con:script>
+  </con:eventHandlers>
+  <con:eventHandlers type="TestRunListener.afterStep" name="TestRunListener.afterStep">
+    <con:script>// Save all test step results into files
+// Change the directory path in line 5 to a location where you want to store details
+// then uncomment lines 5 to 10
+
+// filePath = 'C:\\tempOutputDirectory\\'
+// fos = new FileOutputStream(filePath + testStepResult.testStep.label + '.txt', true)
+// pw = new PrintWriter(fos)
+// testStepResult.writeTo(pw)
+// pw.close()
+// fos.close()</con:script>
+  </con:eventHandlers>
+  <con:authRepository/>
+  <con:tags/>
+</con:soapui-project>
