@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project id="dcc10fc2-1054-4d59-8cb6-983071fec606" created="2.4.0" activeEnvironment="Default environment" name="CompareDatasourceWithResponse" resourceRoot="" updated="2.4.0 2018-06-04T12:31:42Z" xmlns:con="http://eviware.com/soapui/config">
+<con:soapui-project id="dcc10fc2-1054-4d59-8cb6-983071fec606" created="2.4.0" activeEnvironment="Default environment" name="CompareDatasourceWithResponse" resourceRoot="" updated="2.4.0 2018-06-04T12:31:42Z" encryptionMode="Not encrypted" xmlns:con="http://eviware.com/soapui/config">
   <con:settings/>
   <con:testSuite id="777539aa-dd48-4058-ac74-fdd401c01120" name="MyTestSuite">
     <con:settings/>
@@ -13,8 +13,8 @@
         <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
           <con:dataSource type="Excel">
             <con:configuration>
-              <file>C:/Users/luciana/Downloads/Trial.xlsx</file>
-              <worksheet>TestGrid</worksheet>
+              <file>C:/Users/luciana/Downloads/Tester.xls</file>
+              <worksheet>Sheet1</worksheet>
               <cell>A2</cell>
               <ignoreEmpty>false</ignoreEmpty>
               <evaluateFormulas>false</evaluateFormulas>
@@ -57,6 +57,7 @@
 
 // Get the id from the datasource
 def id = context.expand('${DataSource#ID}') as Integer
+log.info "The id collected from the datasource is '" + id + "'." 
 
 // Get the response from the GetResponse step
 def response = context.expand('${GetResponse#Response}')
@@ -68,13 +69,27 @@ def jsonObject = jsonSlurper.parseText( response )
 // Get the element where the ID is the same as in the datasource
 for (int i = 0; i &lt; jsonObject.value.size(); i++) {
 	if (jsonObject.value[i].Id == id) {
+		
 		// Start comparison
+		log.info "The TestID value collected from the datasource is '" + context.expand('${DataSource#TestId}') + "' while the response value is " + jsonObject.value[i].TestID + "'."
 		assert jsonObject.value[i].TestID.equals( context.expand('${DataSource#TestId}'))
+
+		log.info "The TestName value collected from the datasource is '" + context.expand('${DataSource#TestName}') + "' while the response value is '" + jsonObject.value[i].TestName + "'."
 		assert jsonObject.value[i].TestName.equals( context.expand('${DataSource#TestName}'))
+
+		log.info "The Assays value collected from the datasource is '" + context.expand('${DataSource#Assay}') + "' while the response value is '" + jsonObject.value[i].Assays + "'."
 		assert jsonObject.value[i].Assays.equals( context.expand('${DataSource#Assay}'))
+
+		log.info "The Analyses value collected from the datasource is '" + context.expand('${DataSource#Analyses}') + "' while the response value is '" + jsonObject.value[i].Analyses + "'."
 		assert jsonObject.value[i].Analyses.equals( context.expand('${DataSource#Analyses}'))
+
+		log.info "The Cassettes value from the datasource is '" + context.expand('${DataSource#Cassettes}') + "' while the response value is '" + jsonObject.value[i].Cassettes + "'."
 		assert jsonObject.value[i].Cassettes.equals( context.expand('${DataSource#Cassettes}'))
+
+		log.info "The Enabled value from the datasource is '" + context.expand('${DataSource#Enabled}') + "' while the response value is '" + jsonObject.value[i].Enabled + "'."
 		assert jsonObject.value[i].Enabled == context.expand('${DataSource#Enabled}').toBoolean()
+
+		log.info "The UserDefined value from the datasource is '" + context.expand('${DataSource#UserDefined}') + "' while the response value is '" + jsonObject.value[i].UserDefined + "'."
 		assert jsonObject.value[i].UserDefined == context.expand('${DataSource#UserDefined}').toBoolean()
 	}
 }</script>
@@ -97,6 +112,16 @@ for (int i = 0; i &lt; jsonObject.value.size(); i++) {
       </con:breakPoints>
       <con:breakPoints>
         <con:testStepId>f59a41ac-3dca-4f85-ac39-3063c854feb7</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>b8bc73c6-50c4-47b3-9de2-a296f96cd83a</con:testStepId>
+        <con:status>NONE</con:status>
+        <con:properties/>
+      </con:breakPoints>
+      <con:breakPoints>
+        <con:testStepId>5d83824f-a103-4816-ba3c-67e05d467420</con:testStepId>
         <con:status>NONE</con:status>
         <con:properties/>
       </con:breakPoints>
