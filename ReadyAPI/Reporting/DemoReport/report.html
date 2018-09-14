@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		
+
+		<script>
+			function load_home(id) {
+				path = `C:/Users/luciana/Desktop/reporting_research/report/test_suites/${id}/${id}_editor.html`;
+				document.getElementById("editor").innerHTML=`<object type="text/html" data="${path}" ></object>`;
+			}
+		</script>
+	
+		<style>
+			html, body {
+				height: 100%;
+			}
+			
+			.column {
+				float: left;
+				border-style: solid;
+				height: 90%;
+			}
+
+			#navigator {
+				width: 20%;
+			}
+			
+			#editor {
+				width: 70%;
+			}
+			
+			.content {
+			    display: none;
+				overflow: hidden;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<h1>Regression_T1</h1>
+		
+		<div id="navigator" class="column">
+			<div id="ts_A">
+				<div class="collapsible">
+					<a id="ts_A" href="#" onClick="load_home(this.id)">test suite A</a><br/>
+				</div>
+				<div id="ts_A_test_cases_list" class="content">
+					<div>
+						<div  class="collapsible">
+							<a id="tc_1" href="#" onClick="load_home(this.id)">Test Case 1</a><br/>
+						</div>
+						<div id="teststep_list" class="content">
+							<div>
+								<div>Test Step 1</div>
+								<div>Test Step 2</div>
+								<div>Test Step 3</div>
+							</div>	
+						</div>
+					</div>
+					<div>
+						<div  class="collapsible">Test Case 2</div>
+					</div>
+					<div>
+						<div  class="collapsible">Test Case 3</div>
+					</div>
+				</div>
+			</div>
+			<a id="ts_B" href="#" onClick="load_home(this.id)">test suite B</a><br/>
+		</div>
+			
+		<div id="editor" class="column">Column2</div>
+		
+		<script>
+			var coll = document.getElementsByClassName("collapsible");
+			var i;
+
+			for (i = 0; i < coll.length; i++) {
+			  coll[i].addEventListener("click", function() {
+				this.classList.toggle("active");
+				var content = this.nextElementSibling;
+				if (content.style.display === "block") {
+				  content.style.display = "none";
+				} else {
+				  content.style.display = "block";
+				}
+			  });
+			}
+		</script>
+	</body>
+</html>
