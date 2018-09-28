@@ -1,0 +1,21 @@
+The following project is used:
+
+MyDummyProject
+	TestSuiteA
+		TestCaseA
+			TestStep1
+			TestStep2
+			TestStep3
+		TestCaseB
+			TestStep1
+			TestStep2
+			TestStep3
+	TestSuiteB
+		TestCaseA
+			TestStep1
+			TestStep2
+			TestStep3
+		TestCaseB
+			TestStep1
+			TestStep2
+			TestStep3
