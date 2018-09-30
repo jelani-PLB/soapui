@@ -1,6 +1,65 @@
 <!DOCTYPE html>
 <html>
+
+  <!-- CSS -->
+  <head>
+    <style>
+      /* body {
+        background-color: red;
+      } */
+      .run_container {
+        width: 96%;
+        background-color: #EBF8FD;
+        border: solid lightgray 1px;
+        border-radius: 3px;
+        padding: 15px;
+        margin-bottom: 10px;
+      }
+      .result_bar {
+        width: 98%;
+        height: 20px;
+        border: solid black 1px;
+        margin-top: 5px;
+
+      }
+      .passed {
+        background-color: green;
+      }
+      .failed {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <!-- Body -->
   <body>
     <h1>TestProjectA</h1>
+    <div id="bar_TestSuiteA" class="run_container">
+      <div>TestSuiteA</div>
+      <div class="result_bar passed"></div>
+    </div>
+    <div id="bar_TestSuiteB" class="run_container">
+      <div>TestSuiteB</div>
+      <div class="result_bar passed"></div>
+    </div>
   </body>
+
+  <script>
+    var bar = document.getElementsByClassName("run_container");
+      var i;
+      for (i = 0; i < bar.length; i++) {
+        bar[i].addEventListener("mouseover", function() {
+          this.style.backgroundColor = '#9AE6FF';
+        });
+        bar[i].addEventListener("mouseout", function() {
+          this.style.backgroundColor = '#EBF8FD';
+        });
+        bar[i].addEventListener("click", function () {
+          this.style.backgroundColor = 'red'
+          var id = this.id.substring(4);
+          path = `${id}/Report.html`;
+    			document.body.innerHTML=`<object type="text/html" style="height: 100%; width: 100%;" data="${path}"></object>`;
+    		});
+      }
+  </script>
 </html>

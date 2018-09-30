@@ -4,12 +4,14 @@
 	<!-- CSS -->
 	<style>
 		html, body {
-			height: 100%;
+			height: 98%;
 		}
 		.column {
 			float: left;
-			border-style: solid;
+			border: solid gray 1px;
 			height: 90%;
+			margin-left: 4px;
+			padding: 5px;
 		}
 		.testsuite {
 			padding-left: 1em;
@@ -25,10 +27,10 @@
 			overflow: hidden;
 		}
 		#navigator {
-			width: 20%;
+			width: 22%;
 		}
 		#editor {
-			width: 70%;
+			width: 75%;
 		}
 	</style>
 
@@ -107,12 +109,11 @@
 	<script>
 		function display_editor(id) {
 			path = `TestProjectA/${id}/Report.html`;
-			// path = `TestSuiteA/TestSuiteAReport.html`;
-			document.getElementById("editor").innerHTML=`<object type="text/html" data="${path}" ></object>`;
+			document.getElementById("editor").innerHTML=`<object type="text/html" style="height: 100%; width: 100%;" data="${path}"></object>`;
 		}
 	</script>
 	<script>
-		window.onload=document.getElementById("editor").innerHTML=`<object type="text/html" data="TestProjectA/Report.html" ></object>`;;
+		window.onload=document.getElementById("editor").innerHTML=`<object type="text/html" style="height: 100%; width: 100%;" data="TestProjectA/Report.html"></object>`;
 	</script>
 
 </html>
