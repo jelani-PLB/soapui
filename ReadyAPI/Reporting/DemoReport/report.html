@@ -14,17 +14,20 @@
 			padding: 5px;
 		}
 		.testsuite {
-			padding-left: 1em;
+			padding-left: 1.5em;
 		}
 		.testcase {
-			padding-left: 1em;
+			padding-left: 1.5em;
 		}
 		.teststep {
-			padding-left: 1em;
+			padding-left: 1.5em;
 		}
 		.collapsed {
 			display: none;
 			overflow: hidden;
+		}
+		.navigation_link {
+			margin-left: 2px;
 		}
 		#navigator {
 			width: 22%;
@@ -38,45 +41,45 @@
 	<body>
 		<!-- Navigator - left side of the screen -->
 		<div id="navigator" class="column">
-			<div><a href='#' onClick="display_editor(this.parentNode.id)">TestProjectA</a>
+			<div><img src="icons/test_project.png"><a href='#' class="navigation_link" onClick="display_editor(this.parentNode.id)">TestProjectA</a>
 				<div class="testsuite">
-					<div id="TestSuiteA"  class="collapsible"><a href="#" onClick="display_editor(this.parentNode.id)">TestSuiteA</a></div>
+					<div id="TestSuiteA"  class="collapsible"><img src="icons/test_suite.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestSuiteA</a></div>
 					<div class="collapsed">
 						<div class="testcase">
-							<div id="TestSuiteA/TestCaseA" class="collapsible"><a href="#" onClick="display_editor(this.parentNode.id)">TestCaseA</a></div>
+							<div id="TestSuiteA/TestCaseA" class="collapsible"><img src="icons/test_case.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestCaseA</a></div>
 							<div class="collapsed teststep">
-								<div id="TestSuiteA/TestCaseA/TestStep1"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
-								<div id="TestSuiteA/TestCaseA/TestStep2"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
-								<div id="TestSuiteA/TestCaseA/TestStep3"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
+								<div id="TestSuiteA/TestCaseA/TestStep1"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
+								<div id="TestSuiteA/TestCaseA/TestStep2"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
+								<div id="TestSuiteA/TestCaseA/TestStep3"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
 							</div>
 						</div>
 						<div class="testcase">
-							<div id="TestSuiteA/TestCaseB" class="collapsible"><a href="#" onClick="display_editor(this.parentNode.id)">TestCaseB</a></div>
+							<div id="TestSuiteA/TestCaseB" class="collapsible"><img src="icons/test_case.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestCaseB</a></div>
 							<div class="collapsed teststep">
-								<div id="TestSuiteA/TestCaseB/TestStep1"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
-								<div id="TestSuiteA/TestCaseB/TestStep2"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
-								<div id="TestSuiteA/TestCaseB/TestStep3"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
+								<div id="TestSuiteA/TestCaseB/TestStep1"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
+								<div id="TestSuiteA/TestCaseB/TestStep2"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
+								<div id="TestSuiteA/TestCaseB/TestStep3"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="testsuite">
-					<div id="TestSuiteB"  class="collapsible"><a href="#" onClick="display_editor(this.parentNode.id)">TestSuiteB</a></div>
+					<div id="TestSuiteB"  class="collapsible"><img src="icons/test_suite.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestSuiteB</a></div>
 					<div class="collapsed">
 						<div class="testcase">
-							<div id="TestSuiteB/TestCaseA" class="collapsible"><a href="#" onClick="display_editor(this.parentNode.id)">TestCaseA</a></div>
+							<div id="TestSuiteB/TestCaseA" class="collapsible"><img src="icons/test_case.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestCaseA</a></div>
 							<div class="collapsed teststep">
-								<div id="TestSuiteB/TestCaseA/TestStep1"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
-								<div id="TestSuiteB/TestCaseA/TestStep2"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
-								<div id="TestSuiteB/TestCaseA/TestStep3"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
+								<div id="TestSuiteB/TestCaseA/TestStep1"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
+								<div id="TestSuiteB/TestCaseA/TestStep2"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
+								<div id="TestSuiteB/TestCaseA/TestStep3"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
 							</div>
 						</div>
 						<div class="testcase">
-							<div id="TestSuiteB/TestCaseB" class="collapsible"><a href="#" onClick="display_editor(this.parentNode.id)">TestCaseB</a></div>
+							<div id="TestSuiteB/TestCaseB" class="collapsible"><img src="icons/test_case.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestCaseB</a></div>
 							<div class="collapsed teststep">
-								<div id="TestSuiteB/TestCaseB/TestStep1"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
-								<div id="TestSuiteB/TestCaseB/TestStep2"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
-								<div id="TestSuiteB/TestCaseB/TestStep3"><a href="#" onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
+								<div id="TestSuiteB/TestCaseB/TestStep1"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep1</a></div>
+								<div id="TestSuiteB/TestCaseB/TestStep2"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep2</a></div>
+								<div id="TestSuiteB/TestCaseB/TestStep3"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestStep3</a></div>
 							</div>
 						</div>
 					</div>
