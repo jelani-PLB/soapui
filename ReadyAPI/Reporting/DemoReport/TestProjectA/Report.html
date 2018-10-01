@@ -4,9 +4,13 @@
   <!-- CSS -->
   <head>
     <style>
-      /* body {
-        background-color: red;
-      } */
+      html {
+        display: inline-block;
+        height: 100%;
+      }
+      body {
+        height: 100%;
+      }
       .run_container {
         width: 96%;
         background-color: #EBF8FD;
@@ -33,17 +37,20 @@
 
   <!-- Body -->
   <body>
-    <h1>TestProjectA</h1>
-    <div id="bar_TestSuiteA" class="run_container">
-      <div>TestSuiteA</div>
-      <div class="result_bar passed"></div>
-    </div>
-    <div id="bar_TestSuiteB" class="run_container">
-      <div>TestSuiteB</div>
-      <div class="result_bar passed"></div>
+    <div>
+      <h1>TestProjectA</h1>
+      <div id="bar_TestSuiteA" class="run_container">
+        <div>TestSuiteA</div>
+        <div class="result_bar passed"></div>
+      </div>
+      <div id="bar_TestSuiteB" class="run_container">
+        <div>TestSuiteB</div>
+        <div class="result_bar passed"></div>
+      </div>
     </div>
   </body>
 
+  <!-- Javascript -->
   <script>
     var bar = document.getElementsByClassName("run_container");
       var i;
@@ -54,12 +61,6 @@
         bar[i].addEventListener("mouseout", function() {
           this.style.backgroundColor = '#EBF8FD';
         });
-        bar[i].addEventListener("click", function () {
-          this.style.backgroundColor = 'red'
-          var id = this.id.substring(4);
-          path = `${id}/Report.html`;
-    			document.body.innerHTML=`<object type="text/html" style="height: 100%; width: 100%;" data="${path}"></object>`;
-    		});
       }
   </script>
 </html>

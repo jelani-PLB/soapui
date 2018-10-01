@@ -1,6 +1,64 @@
 <!DOCTYPE html>
 <html>
+
+  <!-- CSS -->
+  <head>
+    <style>
+      html {
+        display: inline-block;
+        height: 98%;
+      }
+      body {
+        height: 100%;
+      }
+      .run_container {
+        width: 96%;
+        background-color: #EBF8FD;
+        border: solid lightgray 1px;
+        border-radius: 3px;
+        padding: 15px;
+        margin-bottom: 10px;
+      }
+      .result_bar {
+        width: 98%;
+        height: 20px;
+        border: solid black 1px;
+        margin-top: 5px;
+
+      }
+      .passed {
+        background-color: green;
+      }
+      .failed {
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <!-- Body -->
   <body>
     <h1>TestSuiteA</h1>
+    <div id="bar_TestCaseA" class="run_container">
+      <div>TestCaseA</div>
+      <div class="result_bar passed"></div>
+    </div>
+    <div id="bar_TestCaseB" class="run_container">
+      <div>TestCaseB</div>
+      <div class="result_bar passed"></div>
+    </div>
   </body>
+
+  <!-- Javascript -->
+  <script>
+    var bar = document.getElementsByClassName("run_container");
+      var i;
+      for (i = 0; i < bar.length; i++) {
+        bar[i].addEventListener("mouseover", function() {
+          this.style.backgroundColor = '#9AE6FF';
+        });
+        bar[i].addEventListener("mouseout", function() {
+          this.style.backgroundColor = '#EBF8FD';
+        });
+      }
+  </script>
 </html>
