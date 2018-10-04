@@ -1,6 +1,67 @@
 <!DOCTYPE html>
 <html>
+
+  <!-- CSS -->
+  <head>
+    <style>
+      html {
+        display: inline-block;
+        height: 98%;
+      }
+      body {
+        height: 100%;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      img {
+        padding-right: 0.3em;
+      }
+      .step_container {
+        width: 96%;
+        /* background-color: #EBF8FD; */
+        border: solid lightgray 1px;
+        border-radius: 3px;
+        padding: 15px;
+        margin-bottom: 10px;
+      }
+      .passed {
+        color: green;
+        font-weight: bold;
+      }
+      .failed {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+
+  <!-- Body -->
   <body>
     <h1>TestCaseA from TestSuiteA</h1>
+    <div id="bar_TestStep1" class="step_container passed">
+      <div><img src="./../../../icons/http_step.png">TestStep1</div>
+    </div>
+    <div id="bar_TestStep2" class="step_container passed">
+      <div><img src="./../../../icons/http_step.png">TestStep2</div>
+    </div>
+    <div id="bar_TestStep3" class="step_container failed">
+      <div><img src="./../../../icons/jdbc_step.png">TestStep3</div>
+    </div>
   </body>
+
+  <!-- Javascript -->
+  <script>
+    var bar = document.getElementsByClassName("step_container");
+      var i;
+      for (i = 0; i < bar.length; i++) {
+        bar[i].addEventListener("mouseover", function() {
+          this.style.backgroundColor = '#9AE6FF';
+        });
+        bar[i].addEventListener("mouseout", function() {
+          // this.style.backgroundColor = '#EBF8FD';
+          this.style.backgroundColor = 'white';
+        });
+      }
+  </script>
 </html>
