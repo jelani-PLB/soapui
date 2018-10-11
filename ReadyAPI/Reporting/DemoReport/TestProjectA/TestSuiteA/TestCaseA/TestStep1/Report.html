@@ -1,6 +1,78 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        height: 60%;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      .column {
+  			float: left;
+  			border: solid gray 1px;
+  			height: 90%;
+  			margin-left: 4px;
+  			padding: 5px;
+      }
+      #content_wrapper {
+        width: 100%;
+        height: 100%;
+      }
+      #request {
+        background-color: #F0F0F0;
+        width: 48%;
+        height: 100%;
+        overflow: auto;
+      }
+      #response {
+        background-color: #F0F0F0;
+        width: 48%;
+        height: 100%;
+        overflow: auto;
+      }
+      #assertions_container {
+        background-color: blue;
+      }
+    </style>
+  </head>
   <body>
     <h1>TestStep1 from TestCaseA from TestSuiteA</h1>
+    <div id="content_wrapper">
+      <div id="request" class="column">
+        <pre>
+GET http://www.google.com/ HTTP/1.1
+Accept-Encoding: gzip,deflate
+Content-Length: 0
+Host: google.com
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_162)
+        </pre>
+      </div>
+      <div id="response" class="column">
+        <pre>
+HTTP/1.1 200 OK
+Date: Thu, 11 Oct 2018 12:04:12 GMT
+Expires: -1
+Cache-Control: private, max-age=0
+Content-Type: text/html; charset=ISO-8859-1
+P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
+Server: gws
+X-XSS-Protection: 1; mode=block
+X-Frame-Options: SAMEORIGIN
+Set-Cookie: 1P_JAR=2018-10-11-12; expires=Sat, 10-Nov-2018 12:04:12 GMT; path=/; domain=.google.com
+Set-Cookie: NID=141=ZM-PlxR5kKDYuntvsA6ZdGRLCP3FvCP5PrSEIL8FZgQko_T6f6zXRtS0I_JZAucXIIK8d2B11x5Vme1Vdb-nL9pAHX2kITLBoP4GysxWPBlF1hrp0Rl5MX5m7Ie3a_l5; expires=Fri, 12-Apr-2019 12:04:12 GMT; path=/; domain=.google.com; HttpOnly
+        </pre>
+      </div>
+      <!-- <div id="assertions_container">asserrtions
+      </div>
+    </div>
   </body>
 </html>
