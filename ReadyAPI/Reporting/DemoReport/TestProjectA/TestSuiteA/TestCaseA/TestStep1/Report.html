@@ -15,6 +15,9 @@
       h1 {
         font-size: 20px;
       }
+      h2 {
+        font-size: 16px;
+      }
       .column {
   			float: left;
   			border: solid gray 1px;
@@ -47,17 +50,26 @@
     <h1>TestStep1 from TestCaseA from TestSuiteA</h1>
     <div id="content_wrapper">
       <div id="request" class="column">
-        <pre>
+        <div id="request_title">
+          <h2>Request</h2>
+        </div>
+        <div id="request_content">
+          <pre>
 GET http://www.google.com/ HTTP/1.1
 Accept-Encoding: gzip,deflate
 Content-Length: 0
 Host: google.com
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_162)
-        </pre>
+          </pre>
+        </div>
       </div>
       <div id="response" class="column">
-        <pre>
+        <div id="response_title">
+          <h2>Response</h2>
+        </div>
+        <div id="response_content">
+          <pre>
 HTTP/1.1 200 OK
 Date: Thu, 11 Oct 2018 12:04:12 GMT
 Expires: -1
@@ -69,7 +81,8 @@ X-XSS-Protection: 1; mode=block
 X-Frame-Options: SAMEORIGIN
 Set-Cookie: 1P_JAR=2018-10-11-12; expires=Sat, 10-Nov-2018 12:04:12 GMT; path=/; domain=.google.com
 Set-Cookie: NID=141=ZM-PlxR5kKDYuntvsA6ZdGRLCP3FvCP5PrSEIL8FZgQko_T6f6zXRtS0I_JZAucXIIK8d2B11x5Vme1Vdb-nL9pAHX2kITLBoP4GysxWPBlF1hrp0Rl5MX5m7Ie3a_l5; expires=Fri, 12-Apr-2019 12:04:12 GMT; path=/; domain=.google.com; HttpOnly
-        </pre>
+          </pre>
+        </div>
       </div>
       <!-- <div id="assertions_container">asserrtions
       </div>
