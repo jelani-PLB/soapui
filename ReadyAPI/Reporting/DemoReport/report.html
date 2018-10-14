@@ -14,7 +14,7 @@
 			color: black;
 		}
 		a:hover {
-			color:dimgray;
+			background-color: #9AE6FF;
 		}
 		.column {
 			float: left;
@@ -23,14 +23,20 @@
 			margin-left: 4px;
 			padding: 5px;
 		}
+		.project {
+			background-color: #fce3e3;
+		}
 		.testsuite {
 			padding-left: 1.5em;
+			background-color: #fce3e3;
 		}
 		.testcase {
 			padding-left: 1.5em;
+		  background-color: #e3fce9;
 		}
 		.teststep {
 			padding-left: 1.5em;
+			/* background-color: red; */
 		}
 		.collapsed {
 			display: none;
@@ -39,20 +45,44 @@
 		.navigation_link {
 			margin-left: 2px;
 		}
+		.passed {
+			display: none;
+		}
 		#navigator {
 			width: 22%;
 		}
 		#editor {
 			width: 75%;
 		}
+		#upper_bar {
+			border: solid gray 1px;
+			margin-left: 4px;
+			margin-bottom: 4px;
+			padding: 5px;
+			width: 98%;
+			display: inline-block;
+		}
+		#filter {
+			float:left;
+			font-weight: bold;
+		}
+		#stats {
+			float: right;
+			font-weight: bold;
+			color: red;
+		}
 	</style>
 
 	<!-- HTML -->
 	<body>
+		<div id="upper_bar">
+			<div id="filter">Only show failed tests<input type="checkbox" onchange="doalert(this)" checked></div>
+			<div id="stats">4/10 tests failed</div>
+		</div>
 		<!-- Navigator - left side of the screen -->
 		<div id="navigator" class="column">
-			<div><img src="icons/test_project.png"><a href='#' class="navigation_link" onClick="display_editor(this.parentNode.id)">TestProjectA</a>
-				<div class="testsuite">
+			<div class="project"><img src="icons/test_project.png"><a href='#' class="navigation_link" onClick="display_editor(this.parentNode.id)">TestProjectA</a>
+				<div class="testsuite passed">
 					<div id="TestSuiteA"  class="collapsible"><img src="icons/test_suite.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestSuiteA</a></div>
 					<div class="collapsed">
 						<div class="testcase">
@@ -79,10 +109,10 @@
 						</div>
 					</div>
 				</div>
-				<div class="testsuite">
+				<div class="testsuite failed">
 					<div id="TestSuiteB"  class="collapsible"><img src="icons/test_suite.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestSuiteB</a></div>
 					<div class="collapsed">
-						<div class="testcase">
+						<div class="testcase passed">
 							<div id="TestSuiteB/TestCaseA" class="collapsible"><img src="icons/test_case.png"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">TestCaseA</a></div>
 							<div class="collapsed teststep">
 								<div id="TestSuiteB/TestCaseA/TestStep1"><a href="#" class="navigation_link"  onClick="display_editor(this.parentNode.id)">
@@ -139,6 +169,33 @@
 	</script>
 	<script>
 		window.onload=document.getElementById("editor").innerHTML=`<object type="text/html" style="height: 100%; width: 100%;" data="TestProjectA/Report.html"></object>`;
+	</script>
+	<script>
+		function doalert(checkboxElem) {
+			if (checkboxElem.checked) {
+				// Find all passed test suites and hide them
+				var failed_test_suites = document.getElementsByClassName("testsuite passed");
+				for (i = 0; i < failed_test_suites.length; i++) {
+					failed_test_suites[i].style.display = "none";
+				}
+				// From the remaining failed test suites there are test cases that are passed.
+				// Those must be hidden as well
+				var failed_test_cases = document.getElementsByClassName("testcase passed");
+				for (i = 0; i < failed_test_cases.length; i++) {
+					failed_test_cases[i].style.display = "none";
+				}
+			} else {
+				// Find all test suites and test cases and set them visible
+				var all_test_suites = document.getElementsByClassName("testsuite");
+				for (i = 0; i < all_test_suites.length; i++) {
+					all_test_suites[i].style.display = "inherit";
+				}
+				var all_test_cases = document.getElementsByClassName("testcase");
+				for (i = 0; i < all_test_cases.length; i++) {
+					all_test_cases[i].style.display = "inherit";
+				}
+			}
+		}
 	</script>
 
 </html>
