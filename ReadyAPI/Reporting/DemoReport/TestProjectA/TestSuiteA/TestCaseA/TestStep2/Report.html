@@ -1,6 +1,66 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        height: 100%;
+      }
+      body {
+        height: 98%;
+      }
+      h1 {
+        font-size: 20px;
+      }
+      h2 {
+        font-size: 16px;
+      }
+      #script {
+        background-color: #F0F0F0;
+        width: 97%;
+        height: 60%;
+        overflow: scroll;
+        border: solid gray 1px;
+        padding: 4px
+      }
+      #log_container {
+        margin-top: 4px;
+        background-color: #F0F0F0;
+        border: solid gray 1px;
+        width: 97%;
+        height: 30%;
+        padding: 4px;
+      }
+    </style>
+  </head>
   <body>
     <h1>TestStep2 from TestCaseA from TestSuiteA</h1>
+    <div id="script">
+      <h2>Script content</h2>
+      <pre>
+// Get project properties
+def host = context.expand( '${#Project#mainHost}')
+def remoteClientLocation = context.expand( '${#Project#remoteClientLocation}')
+def restartScriptsLocation = context.expand( '${#Project#restartScriptsLocation}')
+
+def command = testRunner.testCase.testSuite.project.getPropertyValue( "stopServerCommand" )
+
+// Construct command for stopping the Runtime
+command = 'cmd /c ' + command
+
+// Log for debugging purposes
+log.info "Trying to STOP the Runtime server..."
+
+// Execute command and obtain result
+def result = command.execute().text
+      </pre>
+    </div>
+    <div id="log_container">
+      <h2>Script log</h2>
+      test
+    </div>
   </body>
 </html>

@@ -1,0 +1,84 @@
+==============================================================
+Get all test suites, test cases, test steps and write to file:
+==============================================================
+
+// Define variables for holding test suites, test cases and test steps
+def testSuites
+def testCases
+def testSteps
+
+// Get all the test suites from the project
+testSuites = project.testSuiteList
+
+File file = new File("C:\\Users\\luciana\\Desktop\\test.txt")
+
+/**
+ * Iterate through each test suite, test case and test step
+ */
+testSuites.each() {
+	log.info it.name
+	// Log test suite name
+	file << "-----------------------------------\n"
+	file << "Running test suite: " + it.getName() + "\n"
+	file << "-----------------------------------\n"
+	// Get a list with the contained test cases
+	testCases = it.getTestCaseList()
+	testCases.each() {
+		// Log test case name
+		file << "-----------------------------------\n"
+		file << "Running test case: " + it.getName() + "\n"
+		file << "-----------------------------------\n"
+		// Get a list with the contained test steps
+		testSteps = it.getTestStepList()
+		testSteps.each() {
+			file << it.getName() + " - " + it.getAssertionStatus() + "\n"
+		}
+	}
+}
+
+==============================================================
+Get the project status and name
+==============================================================
+context.getProjectRunner().status
+log.info project.name
+
+==============================================================
+Get test suite, test case and test step statuses
+==============================================================
+def testSuitesResult = runner.getResults()
+def testCasesResults
+def testStepResults
+
+testSuitesResult.each() {
+	log.info it.getTestSuite().getName()
+	log.info it.getStatus()
+	
+	testCasesResults = it.getResults()
+	testCasesResults.each() {
+		log.info it.getTestCase().getName()
+		log.info it.getStatus()
+
+		testStepResults = it.getResults()
+		testStepResults.each() {
+			log.info it.getTestStep()
+			log.info it.getStatus()
+			log.info it.getTestStep().getName()
+		}
+	}
+}
+
+==============================================================
+Assertions
+==============================================================
+testAssertionsList.each() {
+				log.info it.getName()
+				log.info it.getStatus()
+				if (it.getErrors())
+					log.info it.getErrors()[0].getMessage()
+			}
+
+==============================================================
+Get raw request and response
+==============================================================
+file << (new String(it.getTestStep().testRequest.messageExchange.rawRequestData))
+file << (new String(it.getTestStep().testRequest.messageExchange.rawResponseData))			
