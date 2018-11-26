@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head><style>html,body{margin:0;padding:0;}html{height:100%;}body{height:98%;}h1{font-size:20px;}h2{font-size:16px;}#script{background-color:#F0F0F0;width:97%;height:60%;overflow:scroll;border:solid gray 1px;padding:4px}#log_container{margin-top:4px;background-color:#F0F0F0;border:solid gray 1px;width:97%;height:30%;padding:4px;}</style></head><body><h1>TestStep2 from TestCaseA from TestSuiteA</h1><div id="script"><h2>Script content</h2><pre>// get the testStep by name
+def testStep = testRunner.testCase.getTestStepByName('ClickUnresponsiveButton')
+// run it
+log.info "Running crash step..."
+def result = testStep.run( testRunner, context )
+
+// Set the timeout to default value again
+settings.setString( HttpSettings.SOCKET_TIMEOUT, bk_timeout )
+SoapUI.saveSettings()
+
+if( result.status == TestStepStatus.OK ) {
+	// Test status OK -> this means the response wasn't timed out
+    log.error("The response for the request on step 'ClickUnresponsiveButton' wasn't delayed nor timed out. Is 'blueriq.failover-test.crashEnabled=true' present in your <application.properties> file ?")
+    testRunner.fail
+}</pre></div><div id="log_container"><h2>Script log</h2>The script log is not yet available</div></body></html>

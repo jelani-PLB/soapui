@@ -14,20 +14,34 @@
           <con:settings>
             <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
           </con:settings>
-          <con:endpoint>http://google.com</con:endpoint>
+          <con:endpoint>http://bq11-test-mstr:10080/Runtime/server/start?project=database-Dest&amp;flow=f&amp;version=0.0-Trunk_revb564dcd8-282a-455e-ac1f-9a7028e7804e&amp;languageCode=en-GB&amp;ui=angular&amp;theme=material</con:endpoint>
           <con:request/>
-          <con:assertion type="Valid HTTP Status Codes" id="5b95c77e-669f-45e5-871c-c37d6762ee23" name="The Runtime responds with a 200 status code">
-            <con:settings/>
-            <con:configuration>
-              <codes>200</codes>
-            </con:configuration>
-          </con:assertion>
           <con:credentials>
             <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
             <con:authType>No Authorization</con:authType>
           </con:credentials>
           <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
           <con:parameters/>
+        </con:config>
+      </con:testStep>
+      <con:testStep type="groovy" name="GetSessionId" id="a1e1bf7e-c68b-45b9-a54c-31a99757c998">
+        <con:settings/>
+        <con:config>
+          <script>// get the testStep by name
+def testStep = testRunner.testCase.getTestStepByName('ClickUnresponsiveButton')
+// run it
+log.info "Running crash step..."
+def result = testStep.run( testRunner, context )
+
+// Set the timeout to default value again
+settings.setString( HttpSettings.SOCKET_TIMEOUT, bk_timeout )
+SoapUI.saveSettings()
+
+if( result.status == TestStepStatus.OK ) {
+	// Test status OK -> this means the response wasn't timed out
+    log.error("The response for the request on step 'ClickUnresponsiveButton' wasn't delayed nor timed out. Is 'blueriq.failover-test.crashEnabled=true' present in your &lt;application.properties> file ?")
+    testRunner.fail
+}</script>
         </con:config>
       </con:testStep>
       <con:properties/>
@@ -96,65 +110,34 @@ testSuiteList.each() {
 		testStepList.each() {
 			testStepDir = testCaseDir + "\\" + it.getName().replace(' ', '')
 			new File( testStepDir ).mkdir()
-
 			reportFile = new File(testStepDir + "\\report.html")
-			reportFile.text = '''<!DOCTYPE html><html><head><style>html,body{margin:0;padding:0;}html{height:100%;}body{height:98%;}h1{font-size:20px;}h2{font-size:16px;}.column{float:left;border:solid gray 1px;height:90%;margin-left:4px;padding:5px;}.assertion_container{margin:4px;background-color:white;border:solid gray 1px;width:95%;padding:4px;}.assertion_details{margin-left:60px;}.assertion_name{color:red;}#content_wrapper{width:100%;height:60%;}#request{background-color:#F0F0F0;width:48%;height:100%;overflow:auto;}#response{background-color:#F0F0F0;width:48%;height:100%;overflow:auto;}#assertions_wrapper_container{background-color:#F0F0F0;float:left;margin-top:4px;margin-left:4px;padding:5px;border:solid gray 1px;height:30%;width:97%;overflow:scroll;}</style></head>
-  <body>
-    <h1>TestStep1 from TestCaseA from TestSuiteA</h1>
-    <div id="content_wrapper">
-      <div id="request" class="column">
-        <div id="request_title">
-          <h2>Request</h2>
-        </div>
-        <div id="request_content">
-          <pre>
-GET http://www.google.com/ HTTP/1.1
-Accept-Encoding: gzip,deflate
-Content-Length: 0
-Host: google.com
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_162)
-          </pre>
-        </div>
-      </div>
-      <div id="response" class="column">
-        <div id="response_title">
-          <h2>Response</h2>
-        </div>
-        <div id="response_content">
-          <pre>
-HTTP/1.1 200 OK
-Date: Thu, 11 Oct 2018 12:04:12 GMT
-Expires: -1
-Cache-Control: private, max-age=0
-Content-Type: text/html; charset=ISO-8859-1
-P3P: CP="This is not a P3P policy! See g.co/p3phelp for more info."
-Server: gws
-X-XSS-Protection: 1; mode=block
-X-Frame-Options: SAMEORIGIN
-Set-Cookie: 1P_JAR=2018-10-11-12; expires=Sat, 10-Nov-2018 12:04:12 GMT; path=/; domain=.google.com
-Set-Cookie: NID=141=ZM-PlxR5kKDYuntvsA6ZdGRLCP3FvCP5PrSEIL8FZgQko_T6f6zXRtS0I_JZAucXIIK8d2B11x5Vme1Vdb-nL9pAHX2kITLBoP4GysxWPBlF1hrp0Rl5MX5m7Ie3a_l5; expires=Fri, 12-Apr-2019 12:04:12 GMT; path=/; domain=.google.com; HttpOnly
-          </pre>
-        </div>
-      </div>
-    </div>
-    <div id="assertions_wrapper_container">
-      <div id="assertions_title">
-        <h2>Assertions</h2>
-      </div>
-      <div class="assertion_container">
-        <div class="assertion_name"><b>FAIL</b> Valid HTTP Status Codes</div>
-        <div class="assertion_details"><t/><i>Response status code 200 is not in acceptable list of status codes</i></div>
-      </div>
-      <div class="assertion_container">
-        <div class="assertion_name"><b>FAIL</b> Simple contains condition</div>
-        <div class="assertion_details"><t/><i>Missing the text 'token' in response</i></div>
-      </div>
-    </div>
-  </body>
-</html>
-'''
-reportFile.text = "test"
+			if ( it.getClass() == com.eviware.soapui.impl.wsdl.teststeps.HttpTestRequestStep ) {
+				reportFile.text = '''<!DOCTYPE html><html><head><style>html,body{margin:0;padding:0;}html{height:100%;}body{height:98%;}h1{font-size:20px;}h2{font-size:16px;}.column{float:left;border:solid gray 1px;height:90%;margin-left:4px;padding:5px;}.assertion_container{margin:4px;background-color:white;border:solid gray 1px;width:95%;padding:4px;}.assertion_details{margin-left:60px;}#content_wrapper{width:100%;height:60%;}#request{background-color:#F0F0F0;width:48%;height:100%;overflow:auto;}#response{background-color:#F0F0F0;width:48%;height:100%;overflow:auto;}#assertions_wrapper_container{background-color:#F0F0F0;float:left;margin-top:4px;margin-left:4px;padding:5px;border:solid gray 1px;height:30%;width:97%;overflow:scroll;}</style></head><body>
+	    							 <h1>''' + it.getName() + '''</h1><div id="content_wrapper"><div id="request" class="column"><div id="request_title"><h2>Request</h2></div><div id="request_content"><pre>''' +
+	    							 new String(it.getTestStep().testRequest.messageExchange.rawRequestData) + '''</pre></div></div><div id="response" class="column"><div id="response_title"><h2>Response</h2></div><div id="response_content"><pre>''' +
+								 new String(it.getTestStep().testRequest.messageExchange.rawResponseData) + '''</pre></div></div></div><div id="assertions_wrapper_container"><div id="assertions_title"><h2>Assertions</h2></div>'''
+	     		if ( it.getAssertionList().size()  == 0 ) {
+	     			reportFile << '''<div><i>There are no assertions in this test step<i></div>'''
+	     		}
+	     		else {
+					it.getAssertionList().each() {
+						reportFile <<  '''<div class="assertion_container"><div class="assertion_name"'''
+						if ( it.getStatus().toString() == "PASS" ) {
+							reportFile << ''' style="color:green"'''
+						} else if ( it.getStatus().toString() == "FAIL" ) {
+							reportFile << ''' style="color:red"'''
+						}
+						reportFile << '''><b>''' + it.getStatus() + '''</b> - ''' + it.getName() + '''</div>'''
+						if (it.getErrors())
+							reportFile << '''<div class="assertion_details"><t/><i>''' + it.getErrors()[0].getMessage() + '''</i></div>'''
+						reportFile << '''</div>'''
+			     	}
+				}
+				reportFile << '''</div></body></html>'''	
+			} else if ( it.getClass() == com.eviware.soapui.impl.wsdl.teststeps.DebuggableWsdlGroovyScriptTestStep ) {
+				reportFile.text = '''<!DOCTYPE html><html><head><style>html,body{margin:0;padding:0;}html{height:100%;}body{height:98%;}h1{font-size:20px;}h2{font-size:16px;}#script{background-color:#F0F0F0;width:97%;height:60%;overflow:scroll;border:solid gray 1px;padding:4px}#log_container{margin-top:4px;background-color:#F0F0F0;border:solid gray 1px;width:97%;height:30%;padding:4px;}</style></head><body><h1>TestStep2 from TestCaseA from TestSuiteA</h1><div id="script">''' +
+                                      '''<h2>Script content</h2><pre>''' + it.scriptText + '''</pre></div><div id="log_container"><h2>Script log</h2>The script log is not yet available @TODO</div></body></html>'''
+			}
 		}
 	}
 }]]></con:afterRunScript>
